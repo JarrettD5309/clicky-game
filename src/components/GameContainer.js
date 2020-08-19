@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "./Navbar";
 import Counter from "./Counter";
 import PlayAgain from "./PlayAgain";
+import YouWin from "./YouWin";
 import Acen from "../images/acen.jpeg";
 import Bombscare from "../images/bombscare.jpg";
 import Dubwar from "../images/dubwar.jpg";
@@ -57,7 +58,9 @@ class GameContainer extends React.Component {
     }
 
     areYouActive = () => {
-        if (this.state.active === true) {
+        if (this.state.score===12) {
+            return <YouWin initialState={this.initialState} />
+        } else if (this.state.active === true) {
             return <Counter countScore={this.countScore} imageArr={this.state.imageArr} handleActive={this.handleActive} />;
         } else {
             this.setHighScore();
@@ -75,13 +78,11 @@ class GameContainer extends React.Component {
     }
 
     countScore = (name,i) => {
-        console.log(name);
+        
         if (this.state.imageArr[i].name === name && this.state.imageArr[i].clicked === false) {
             let newScore = this.state.score + 1;
-            console.log(newScore);
             let currentArr = this.state.imageArr;
             currentArr[i].clicked=true;
-            console.log(currentArr[i]);
             this.setState({ score: newScore });
             this.setState({imageArr:currentArr});
             this.setState({ imageArr: this.shuffle(this.state.imageArr) })
