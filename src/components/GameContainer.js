@@ -19,45 +19,88 @@ class GameContainer extends React.Component {
 
     state = {
         active: true,
-        score: 0
+        score: 0,
+        imageArr: [
+            { name: "Acen", src: Acen, clicked: false },
+            { name: "Bombscare", src: Bombscare, clicked: false },
+            { name: "Dub War", src: Dubwar, clicked: false },
+            { name: "DJ Edge", src: Edge, clicked: false },
+            { name: "Liquid", src: Liquid, clicked: false },
+            { name: "Mule", src: Mule, clicked: false },
+            { name: "Narramind", src: Narramind, clicked: false },
+            { name: "Prodigy", src: Prodigy, clicked: false },
+            { name: "Shutup", src: Shutup, clicked: false },
+            { name: "Sl2", src: Sl2, clicked: false },
+            { name: "Sonz", src: Sonz, clicked: false },
+            { name: "Urban Shakedown", src: Urbanshakedown, clicked: false }
+        ]
     }
 
-    imageArr = [Acen,Bombscare,Dubwar,Edge,Liquid,Mule,Narramind,Prodigy,Shutup,Sl2,Sonz,Urbanshakedown];
+    shuffle = (array) => {
+        var currentIndex = array.length, temporaryValue, randomIndex;
+
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+
+            // Pick a remaining element...
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            // And swap it with the current element.
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+
+        return array;
+    }
 
     areYouActive = () => {
-        if (this.state.active===true) {
-            return <Counter countScore={this.countScore} imageArr={this.imageArr} handleActive={this.handleActive}/>;
+        if (this.state.active === true) {
+            return <Counter countScore={this.countScore} imageArr={this.state.imageArr} handleActive={this.handleActive} />;
         } else {
-            return <PlayAgain handleActive={this.handleActive}/>;
+            return <PlayAgain handleActive={this.handleActive} />;
         }
     }
 
     handleActive = () => {
-        if (this.state.active===true) {
-            this.setState({active: false})
+        if (this.state.active === true) {
+            this.setState({ active: false })
         } else {
-            this.setState({active:true})
+            this.setState({ active: true })
         }
-        
+
     }
 
-    countScore = () => {
-        let newScore = this.state.score + 1;
-        console.log(newScore);
-        this.setState({score: newScore});
+    countScore = (name,i) => {
+        console.log(name);
+        if (this.state.imageArr[i].name === name && this.state.imageArr[i].clicked === false) {
+            let newScore = this.state.score + 1;
+            console.log(newScore);
+            let currentArr = this.state.imageArr;
+            currentArr[i].clicked=true;
+            console.log(currentArr[i]);
+            this.setState({ score: newScore });
+            this.setState({imageArr:currentArr});
+            this.setState({ imageArr: this.shuffle(this.state.imageArr) })
+        } else {
+            this.setState({active:false});
+        }
+
     }
 
     render() {
         return (
             <div>
-            <Navbar />
-            <div className="container">
-        <h2>Score: {this.state.score}</h2>
-              {this.areYouActive()}
-            </div> 
+                <Navbar />
+                <div className="container">
+                    <h2>Score: {this.state.score}</h2>
+                    {this.areYouActive()}
+                    {/* {this.state.active===true ? <Counter countScore={this.countScore} imageArr={this.imageArr} handleActive={this.handleActive}/>:<PlayAgain handleActive={this.handleActive}/>} */}
+                </div>
             </div>
-            
-          );
+
+        );
 
     }
 
