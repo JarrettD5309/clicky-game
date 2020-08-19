@@ -7,7 +7,7 @@ function Counter(props) {
                 <div className="row">
                     {props.imageArr.map(result => (
                         <div className="col-6 col-md-4 mb-2">
-                            <img alt="record label" className="rounded img-fluid" src={result} />
+                            <button className="btn btn-default" onClick={()=>props.countScore()}><img alt="record label" className="rounded img-fluid" src={result}/></button>
                         </div>
                     ))}
                 </div>

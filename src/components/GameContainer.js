@@ -18,14 +18,15 @@ import Urbanshakedown from "../images/urbanshakedown.jpg";
 class GameContainer extends React.Component {
 
     state = {
-        active: true
+        active: true,
+        score: 0
     }
 
     imageArr = [Acen,Bombscare,Dubwar,Edge,Liquid,Mule,Narramind,Prodigy,Shutup,Sl2,Sonz,Urbanshakedown];
 
     areYouActive = () => {
         if (this.state.active===true) {
-            return <Counter imageArr={this.imageArr} handleActive={this.handleActive}/>;
+            return <Counter countScore={this.countScore} imageArr={this.imageArr} handleActive={this.handleActive}/>;
         } else {
             return <PlayAgain handleActive={this.handleActive}/>;
         }
@@ -40,11 +41,18 @@ class GameContainer extends React.Component {
         
     }
 
+    countScore = () => {
+        let newScore = this.state.score + 1;
+        console.log(newScore);
+        this.setState({score: newScore});
+    }
+
     render() {
         return (
             <div>
             <Navbar />
             <div className="container">
+        <h2>Score: {this.state.score}</h2>
               {this.areYouActive()}
             </div> 
             </div>
