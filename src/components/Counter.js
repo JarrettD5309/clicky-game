@@ -1,17 +1,19 @@
 import React from "react";
 
-class Counter extends React.Component {
-
-    state = {
-        count: 0
-    };
-
-    render() {
+function Counter(props) {
         return (
-            <p>Current Count: {this.state.count}</p>
-        );
-    
-    }
+            <div>
+                <h2>Play the game</h2>
+                <div className="row">
+                    {props.imageArr.map(result => (
+                        <div className="col-6 col-md-4 mb-2">
+                            <img alt="record label" className="rounded img-fluid" src={result} />
+                        </div>
+                    ))}
+                </div>
+            <button className="btn btn-primary" onClick={()=> props.handleActive()}>Change Active</button>
+            </div>
+            );
 
 }
 
