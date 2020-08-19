@@ -59,7 +59,7 @@ class GameContainer extends React.Component {
         if (this.state.active === true) {
             return <Counter countScore={this.countScore} imageArr={this.state.imageArr} handleActive={this.handleActive} />;
         } else {
-            return <PlayAgain handleActive={this.handleActive} />;
+            return <PlayAgain initialState={this.initialState} />;
         }
     }
 
@@ -87,6 +87,27 @@ class GameContainer extends React.Component {
             this.setState({active:false});
         }
 
+    }
+
+    initialState = () => {
+        let shuffledResetArr = this.shuffle([
+            { name: "Acen", src: Acen, clicked: false },
+            { name: "Bombscare", src: Bombscare, clicked: false },
+            { name: "Dub War", src: Dubwar, clicked: false },
+            { name: "DJ Edge", src: Edge, clicked: false },
+            { name: "Liquid", src: Liquid, clicked: false },
+            { name: "Mule", src: Mule, clicked: false },
+            { name: "Narramind", src: Narramind, clicked: false },
+            { name: "Prodigy", src: Prodigy, clicked: false },
+            { name: "Shutup", src: Shutup, clicked: false },
+            { name: "Sl2", src: Sl2, clicked: false },
+            { name: "Sonz", src: Sonz, clicked: false },
+            { name: "Urban Shakedown", src: Urbanshakedown, clicked: false }
+        ]);
+        this.setState({
+            active: true,
+            score: 0,
+            imageArr: shuffledResetArr})
     }
 
     render() {

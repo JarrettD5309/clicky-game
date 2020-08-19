@@ -11,7 +11,6 @@ function Counter(props) {
                         </div>
                     ))}
                 </div>
-            <button className="btn btn-primary" onClick={()=> props.handleActive()}>Change Active</button>
             </div>
             );
 

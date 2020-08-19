@@ -4,7 +4,7 @@ function PlayAgain(props) {
     return (
         <div>
         <h2>Please play again</h2>
-        <button className="btn btn-primary" onClick={()=> props.handleActive()}>Change Active</button>
+        <button className="btn btn-primary" onClick={()=> props.initialState()}>PlayAgain</button>
         </div>
     );
 }
