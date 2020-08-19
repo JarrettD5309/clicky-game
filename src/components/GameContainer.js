@@ -20,6 +20,7 @@ class GameContainer extends React.Component {
     state = {
         active: true,
         score: 0,
+        highscore: 0,
         imageArr: [
             { name: "Acen", src: Acen, clicked: false },
             { name: "Bombscare", src: Bombscare, clicked: false },
@@ -59,6 +60,7 @@ class GameContainer extends React.Component {
         if (this.state.active === true) {
             return <Counter countScore={this.countScore} imageArr={this.state.imageArr} handleActive={this.handleActive} />;
         } else {
+            this.setHighScore();
             return <PlayAgain initialState={this.initialState} />;
         }
     }
@@ -89,6 +91,13 @@ class GameContainer extends React.Component {
 
     }
 
+    setHighScore = () => {
+        var score=this.state.score;
+        if (score>this.state.highscore) {
+            this.setState({highscore:score});
+        }
+    }
+
     initialState = () => {
         let shuffledResetArr = this.shuffle([
             { name: "Acen", src: Acen, clicked: false },
@@ -116,6 +125,7 @@ class GameContainer extends React.Component {
                 <Navbar />
                 <div className="container">
                     <h2>Score: {this.state.score}</h2>
+                    <h2>High Score: {this.state.highscore}</h2>
                     {this.areYouActive()}
                     {/* {this.state.active===true ? <Counter countScore={this.countScore} imageArr={this.imageArr} handleActive={this.handleActive}/>:<PlayAgain handleActive={this.handleActive}/>} */}
                 </div>
