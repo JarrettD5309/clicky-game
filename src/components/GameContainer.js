@@ -3,6 +3,7 @@ import Navbar from "./Navbar";
 import Counter from "./Counter";
 import PlayAgain from "./PlayAgain";
 import YouWin from "./YouWin";
+import Rules from "./Rules";
 import Score from "./Score";
 import Acen from "../images/acen.jpeg";
 import Bombscare from "../images/bombscare.jpg";
@@ -117,6 +118,7 @@ class GameContainer extends React.Component {
             <div>
                 <Navbar />
                 <Score score={this.state.score} highscore={this.state.highscore}/>
+                <Rules />
                 <div className="container">
                     
                     {this.areYouActive()}
