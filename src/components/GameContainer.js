@@ -70,6 +70,16 @@ class GameContainer extends React.Component {
         }
     }
 
+    rulesActive = () => {
+        if (this.state.score===12) {
+            return;
+        } else if (this.state.active === true) {
+            return <Rules />;
+        } else {
+            return;
+        }
+    }
+
     countScore = (name,i) => {
         
         if (this.state.imageArr[i].name === name && this.state.imageArr[i].clicked === false) {
@@ -118,7 +128,7 @@ class GameContainer extends React.Component {
             <div>
                 <Navbar />
                 <Score score={this.state.score} highscore={this.state.highscore}/>
-                <Rules />
+                {this.rulesActive()}
                 <div className="container">
                     
                     {this.areYouActive()}
