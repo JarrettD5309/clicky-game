@@ -3,6 +3,7 @@ import Navbar from "./Navbar";
 import Counter from "./Counter";
 import PlayAgain from "./PlayAgain";
 import YouWin from "./YouWin";
+import Score from "./Score";
 import Acen from "../images/acen.jpeg";
 import Bombscare from "../images/bombscare.jpg";
 import Dubwar from "../images/dubwar.jpg";
@@ -61,20 +62,11 @@ class GameContainer extends React.Component {
         if (this.state.score===12) {
             return <YouWin initialState={this.initialState} />
         } else if (this.state.active === true) {
-            return <Counter countScore={this.countScore} imageArr={this.state.imageArr} handleActive={this.handleActive} />;
+            return <Counter countScore={this.countScore} imageArr={this.state.imageArr} />;
         } else {
             this.setHighScore();
             return <PlayAgain initialState={this.initialState} />;
         }
-    }
-
-    handleActive = () => {
-        if (this.state.active === true) {
-            this.setState({ active: false })
-        } else {
-            this.setState({ active: true })
-        }
-
     }
 
     countScore = (name,i) => {
@@ -124,11 +116,10 @@ class GameContainer extends React.Component {
         return (
             <div>
                 <Navbar />
+                <Score score={this.state.score} highscore={this.state.highscore}/>
                 <div className="container">
-                    <h2>Score: {this.state.score}</h2>
-                    <h2>High Score: {this.state.highscore}</h2>
+                    
                     {this.areYouActive()}
-                    {/* {this.state.active===true ? <Counter countScore={this.countScore} imageArr={this.imageArr} handleActive={this.handleActive}/>:<PlayAgain handleActive={this.handleActive}/>} */}
                 </div>
             </div>
 

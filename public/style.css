@@ -2,3 +2,12 @@ button {
     outline: none !important;
     box-shadow: none !important;
 }
+
+.navbar, .card {
+    background-color: black !important;
+}
+
+.play-again-btn {
+    border: 1px solid black !important;
+    border-radius: 0 !important;
+}
